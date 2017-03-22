@@ -1,1 +1,12 @@
-soshell
+soshell   (5 ficheiros / soshell.h / main.c / parse.c / execute.c)
+
+Interpretador
+
+>while (not )
+       -ler linha
+       -"parse" linha
+       -execute command
+
+>makefile
+	-make soshell
+	-make clean rm *.o
