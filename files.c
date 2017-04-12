@@ -94,13 +94,3 @@ int get_num_fds()
      closedir(dir);
      return fd_count;
 }
-
-
-
-
-
-
-
-
-
-

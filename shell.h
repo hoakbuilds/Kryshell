@@ -18,7 +18,7 @@ int parse (char *buf, char **args);
 
 void execute (char **args, int numargs);
 
-int builtin (char **args);
+int builtin (char **args, int numargs);
 
 int ultimo (int numargs, char **args);
 
