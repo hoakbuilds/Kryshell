@@ -13,6 +13,7 @@
 #include <errno.h>
 #include <dirent.h>
 
+void printhelp();
 
 int parse (char *buf, char **args);
 
@@ -24,11 +25,11 @@ int ultimo (int numargs, char **args);
 
 void socp (char *src, char *dest);
 
-int filecp (int src, int dest);
+int socpaux (int src, int dest);
 
 int validfd (int fd);
 
-void openfile (char *filename);
+void openfile (char *filename, int mode);
 
 void closefd (int fd);
 
@@ -36,7 +37,7 @@ void fileinfo ();
 
 int get_num_fds();
 
-void soread (int fdin, int fdout, int n);
+void soread (int n, int fdin, int fdout);
 
 					/*CONSTANTS THAT MAY BE USEFUL*/
 

@@ -24,12 +24,12 @@ void socp(char *src, char* dest){
 			return;
 		}
 		
-		filecp(source, destination);
+		socpaux(source, destination);
 		
 		return;	
 }
 
-int filecp(int src, int dest){
+int socpaux (int src, int dest){
 
 	int n, w;
 	char buf[LLFIOBUFF];

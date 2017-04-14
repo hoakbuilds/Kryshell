@@ -20,17 +20,53 @@ int validfd(int fd){
 
 }
 
-void openfile(char *filename){
+void openfile(char *filename, int mode){
 	
-	if( open(filename, O_RDONLY)>=0 ) printf("Opened %s successfully.\n", filename);
-	else perror(filename);
-	
+	if( access(filename, F_OK) != -1 ) {
+		switch(mode){ 
+			case 0 : { 
+				if(access(filename, R_OK) != -1 ){
+					open(filename, O_RDONLY)!=-1 ? printf("Opened %s successfully with reading permission.\n", filename) : perror(filename); return;
+				 } else perror("Error opening %s with reading permission:\n");
+			 }
+			case 1 : {
+				if(access(filename, W_OK) != -1 ){
+					open(filename, O_WRONLY)!=-1 ? printf("Opened %s successfully with writing permission.\n", filename) : perror(filename); return;
+				 } else perror("Error opening %s with writing permission:\n");
+			 }
+			case 2 : {
+				 if(access(filename, W_OK|R_OK) != -1 ){
+					open(filename, O_RDWR)!=-1 ? printf("Opened %s successfully with reading permission.\n", filename) : perror(filename); return;
+				 } else perror("Error opening %s with reading and writing permissions:\n");
+			 }
+		}
+	} else { 
+		if( creat(filename, S_IRUSR|S_IWUSR)!=-1 ){
+			switch(mode){ 
+				case 0 : { 
+					if(access(filename, R_OK) != -1 ){
+						open(filename, O_RDONLY)!=-1 ? printf("Opened %s successfully with reading permission.\n", filename) : perror(filename); return;
+					} else perror("Error opening %s with reading permission:\n");
+				}
+				case 1 : {
+					if(access(filename, W_OK) != -1 ){
+						open(filename, O_WRONLY)!=-1 ? printf("Opened %s successfully with writing permission.\n", filename) : perror(filename); return;
+					} else perror("Error opening %s with writing permission:\n");
+				}
+				case 2 : {
+					if(access(filename, W_OK|R_OK) != -1 ){
+						open(filename, O_RDWR)!=-1 ? printf("Opened %s successfully with reading permission.\n", filename) : perror(filename); return;
+					} else perror("Error opening %s with reading and writing permissions:\n");
+				}
+			}
+		}	
+	}
+	printf("Invalid opening mode.\nMODE: '0' for reading, '1' for writing, '2' for reading and writing.\n");
 }
-
 void closefd(int fd){
 		
 	if( close(fd)<0 ) perror(NULL);
-	else printf("%d closed successfully.\n", fd);
+	else printf("File descriptor %d closed successfully.\n", fd);
 		
 }
 
@@ -71,11 +107,56 @@ void fileinfo(){
 
 }
 
-void soread(int fdin, int fdout, int n){
+void soread(int n, int fdin, int fdout){
 	
-	if( validfd(fdin) && validfd(fdout) ) {
-		
+	if( !validfd(fdin) ){
+		perror("Input file descriptor is not valid.\n");
+		return;
 	}
+	
+	if( !validfd(fdout) ){
+		perror("Output file descriptor is not valid.\n");
+		return;
+	}
+	
+	int w=0, nr=0, aux=0, diff=0;
+	char buff[LLFIOBUFF];
+	
+	if(n>LLFIOBUFF){
+		while( (nr=read(fdin, buff, LLFIOBUFF)>0) ) {
+			w=write(fdout, buff, nr);
+			if(w!=nr) perror("Error writing to output file descriptor.\n");
+			aux+=w;
+			diff=n-aux;
+			if(LLFIOBUFF<diff) break;
+		}
+		if(diff<LLFIOBUFF){
+			nr=read(fdin, buff, n);
+			if(nr<0){ 
+				perror("Error reading from input file descriptor.\n");
+				return;
+			}
+			w=write(fdout, buff, nr);
+			if(w!=nr){
+				perror("Error writing to output file descriptor.\n");
+				return;
+			}
+		}
+		return;
+	}
+	
+	nr=read(fdin, buff, n);
+	if(nr<0){ 
+		perror("Error reading from input file descriptor.\n");
+		return;
+	}
+	w=write(fdout, buff, nr);
+	if(w!=nr){
+		perror("Error writing to output file descriptor.\n");
+		return;
+	}
+	printf("\n");
+	return;	
 }
 
 int get_num_fds()
