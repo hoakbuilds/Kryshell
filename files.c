@@ -36,7 +36,7 @@ void openfile(char *filename, int mode){
 			 }
 			case 2 : {
 				 if(access(filename, W_OK|R_OK) != -1 ){
-					open(filename, O_RDWR)!=-1 ? printf("Opened %s successfully with reading permission.\n", filename) : perror(filename); return;
+					open(filename, O_RDWR)!=-1 ? printf("Opened %s successfully with reading and writing permission.\n", filename) : perror(filename); return;
 				 } else perror("Error opening %s with reading and writing permissions:\n");
 			 }
 		}
@@ -55,7 +55,7 @@ void openfile(char *filename, int mode){
 				}
 				case 2 : {
 					if(access(filename, W_OK|R_OK) != -1 ){
-						open(filename, O_RDWR)!=-1 ? printf("Opened %s successfully with reading permission.\n", filename) : perror(filename); return;
+						open(filename, O_RDWR)!=-1 ? printf("Opened %s successfully with reading and writing permission.\n", filename) : perror(filename); return;
 					} else perror("Error opening %s with reading and writing permissions:\n");
 				}
 			}

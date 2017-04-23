@@ -6,7 +6,7 @@
 #
 #Variaveis: Compiler, compiler flags, libraries to link, name of of object files
 #
-CC=cc
+CC=gcc
 FLAGS=-c -Wall
 LIBS=-lm
 OBS=main.o execute.o parse.o socp.o files.o help.o
