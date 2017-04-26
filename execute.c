@@ -23,7 +23,8 @@ void execute (char **args, int numargs)
 
 	if (pid == 0)
     {
-
+		redirects(numargs, args);
+		
 		execvp (*args, args);					/* NOTE: as versoes execv() e
 												 * execvp() de execl() sao uteis
 												 * quando */

@@ -17,6 +17,8 @@ void printhelp();
 
 int parse (char *buf, char **args);
 
+void redirects(int numargs, char *args[]);
+
 void execute (char **args, int numargs);
 
 int builtin (char **args, int numargs);

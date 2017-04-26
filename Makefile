@@ -6,10 +6,11 @@
 #
 #Variaveis: Compiler, compiler flags, libraries to link, name of of object files
 #
-CC=gcc
+
+CC=cc
 FLAGS=-c -Wall
 LIBS=-lm
-OBS=main.o execute.o parse.o socp.o files.o help.o
+OBS=main.o execute.o parse.o socp.o files.o help.o redirects.o
  
 #Alvo por defeito é o primeiro 
 all :  soshell
@@ -31,6 +32,9 @@ files.o     : shell.h files.c
 
 help.o    	: shell.h help.c
 	$(CC) $(FLAGS) help.c
+	
+redirects.o : shell.h redirects.c
+	$(CC) $(FLAGS) redirects.c
 	
 soshell     : $(OBS)
 	$(CC)  -o soshell  $(OBS) $(LIBS)
