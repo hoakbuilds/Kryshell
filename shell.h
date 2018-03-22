@@ -41,6 +41,8 @@ int get_num_fds();
 
 void soread (int n, int fdin, int fdout);
 
+void tworand ();
+
 					/*CONSTANTS THAT MAY BE USEFUL*/
 
 #define BG 0		  				/* used for background process*/

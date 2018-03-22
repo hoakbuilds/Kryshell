@@ -1,5 +1,5 @@
 /*
-	SOSHELL PROJECT main program file .:.
+	SHELL PROJECT main program file .:.
 	calls parser & executer and runs built in functions
 */
 
@@ -47,15 +47,24 @@ int builtin (char **args, int numargs)
 		printf("Who would've thought that a pesky Murloc could 'code'?\n");
 		return 1;
 	}
+
+	if (strcmp(args[0], "42") == 0 ){
+		printf("42 is the answer to life, the universew and everything.\n");
+		return 1;
+	}
+
+	if (strcmp(args[0], "420") == 0 ){
+		printf("blaze it\n");
+		return 1;
+	}
 	
-	
-	if (strcmp (args[0], "sair") == 0){
+	if (strcmp (args[0], "sair") == 0 || strcmp (args[0], "exit") == 0){
 		printf("Farewell mortals, your bravery is admirable for such flawed creatures.\n");
 		exit (0);
 		return 1;
 	}
 	
-	if (strcmp (args[0], "quemsoueu") == 0){
+	if (strcmp (args[0], "quemsoueu") == 0 || strcmp (args[0], "whoami") == 0){
 		system("id");
 		return 1;
 	}
@@ -117,7 +126,13 @@ int builtin (char **args, int numargs)
 		return 1;
 	}
 
-	//devolver 0 indica que não há comando embutido
+	if (strcmp (args[0], "tworand") == 0){
+		tworand();
+		return 1;
+	}
+	
+
+	//devolver 0 indica que nï¿½o hï¿½ comando embutido
 
   return 0;
 }
