@@ -7,34 +7,34 @@ OBS=main.o execute.o parse.o socp.o files.o help.o redirects.o tworand.o
  
 all :  soshell
  
-main.o 		: shell.h main.c
-	$(CC) $(FLAGS) main.c
+main.o 		: ~/Desktop/Kryshell/src/shell.h ~/Desktop/Kryshell/src/main.c
+	$(CC) $(FLAGS) ~/Desktop/Kryshell/src/main.c
 	
-execute.o   : shell.h execute.c
-	$(CC) $(FLAGS) execute.c
+execute.o   : ~/Desktop/Kryshell/src/shell.h ~/Desktop/Kryshell/src/execute.c
+	$(CC) $(FLAGS) ~/Desktop/Kryshell/src/execute.c
 	
-parse.o     : shell.h parse.c
-	$(CC) $(FLAGS) parse.c
+parse.o     : ~/Desktop/Kryshell/src/shell.h ~/Desktop/Kryshell/src/parse.c
+	$(CC) $(FLAGS) ~/Desktop/Kryshell/src/parse.c
 	
-socp.o      : shell.h socp.c
-	$(CC) $(FLAGS) socp.c
+socp.o      : ~/Desktop/Kryshell/src/shell.h ~/Desktop/Kryshell/src/socp.c
+	$(CC) $(FLAGS) ~/Desktop/Kryshell/src/socp.c
 
-files.o     : shell.h files.c
-	$(CC) $(FLAGS) files.c
+files.o     : ~/Desktop/Kryshell/src/shell.h ~/Desktop/Kryshell/src/files.c
+	$(CC) $(FLAGS) ~/Desktop/Kryshell/src/files.c
 
-help.o    	: shell.h help.c
-	$(CC) $(FLAGS) help.c
+help.o    	: ~/Desktop/Kryshell/src/shell.h ~/Desktop/Kryshell/src/help.c
+	$(CC) $(FLAGS) ~/Desktop/Kryshell/src/help.c
 	
-redirects.o : shell.h redirects.c
-	$(CC) $(FLAGS) redirects.c
+redirects.o : ~/Desktop/Kryshell/src/shell.h ~/Desktop/Kryshell/src/redirects.c
+	$(CC) $(FLAGS) ~/Desktop/Kryshell/src/redirects.c
 
-tworand.o : shell.h tworand.c
-	$(CC) $(FLAGS) tworand.c
+tworand.o : ~/Desktop/Kryshell/src/shell.h ~/Desktop/Kryshell/src/tworand.c
+	$(CC) $(FLAGS) ~/Desktop/Kryshell/src/tworand.c
 	
 soshell     : $(OBS)
-	$(CC)  -o soshell  $(OBS) $(LIBS)
+	$(CC)  -o ~/Desktop/Kryshell/kryshell  $(OBS) $(src)
 	
 clean limpar:
-	rm -f soshell *.o
+	rm -f kryshell *.o
 	rm *~
-	echo "Limpeza dos ficheiros exectuaveis, objectos e gedit tralha"
+	echo "Cleaning executables, compilation files and other trash."
