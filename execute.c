@@ -1,8 +1,3 @@
-/*
-	execute.c .:.
-	creates child process and executes a program
-*/
-
 #include "shell.h"
 
 void execute (char **args, int numargs)

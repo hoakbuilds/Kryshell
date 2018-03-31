@@ -1,18 +1,10 @@
-#A Simple Example Makefile for soshell
-# 
-# Alvo: Dependencias
-# tab Action 1
-# tab Action 2
-#
-#Variaveis: Compiler, compiler flags, libraries to link, name of of object files
-#
 
 CC=cc
 FLAGS=-c -Wall
 LIBS=-lm
 OBS=main.o execute.o parse.o socp.o files.o help.o redirects.o tworand.o
  
-#Alvo por defeito é o primeiro 
+ 
 all :  soshell
  
 main.o 		: shell.h main.c

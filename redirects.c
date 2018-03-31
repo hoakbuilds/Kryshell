@@ -1,7 +1,6 @@
 #include "shell.h"
 
 void redirects(int numargs, char *args[]){
-	/*fazer pela ordem inversa- 2> >> > <*/
 	
 	if(numargs <3) return;
 	int fd;

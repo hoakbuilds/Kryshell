@@ -1,8 +1,3 @@
-/*
-	SHELL PROJECT main program file .:.
-	calls parser & executer and runs built in functions
-*/
-
 #include "shell.h"
 
 char prompt[100];
@@ -14,7 +9,7 @@ int main ()
 	char buf[1024];		/* um comando */
 	char *args[64];		/* com um maximo de 64 argumentos */
 
-	strcpy (prompt, "murlocSHELL 1.0>");
+	strcpy (prompt, "Kryshell>");
 
 	while (1){
 		printf ("%s", prompt);
@@ -130,7 +125,6 @@ int builtin (char **args, int numargs)
 		tworand();
 		return 1;
 	}
-	
 
 	//devolver 0 indica que n�o h� comando embutido
 
