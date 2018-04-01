@@ -126,7 +126,23 @@ int builtin (char **args, int numargs)
 		return 1;
 	}
 
+	if (strcmp (args[0], "rsi") == 0){
+
+		double top = 0.0, bottom = 0.0;
+		int periods = 0;
+		sscanf(args[2], "%d", &periods);
+		sscanf(args[3], "%lf", &top);
+		sscanf(args[4], "%lf", &bottom);
+
+		printf("RSI ::\nPeriods %d \nTop (Oversold) %lf\nBottom (Overbought) %lf\n\n",periods, top, bottom);
+
+		rsi(args[1], periods, top, bottom);
+
+		return 1;
+	}
+
 	//devolver 0 indica que n�o h� comando embutido
 
   return 0;
+
 }

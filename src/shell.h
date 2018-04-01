@@ -43,6 +43,10 @@ void soread (int n, int fdin, int fdout);
 
 void tworand ();
 
+void rsi(char *filename, int periods, double top, double bottom );
+
+
+
 					/*CONSTANTS THAT MAY BE USEFUL*/
 
 #define BG 0		  				/* used for background process*/

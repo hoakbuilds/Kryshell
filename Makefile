@@ -2,7 +2,7 @@
 CC=cc
 FLAGS=-c -Wall
 LIBS=-lm
-OBS=main.o execute.o parse.o socp.o files.o help.o redirects.o tworand.o
+OBS=main.o execute.o parse.o socp.o files.o help.o redirects.o tworand.o rsi.o
  
  
 all :  soshell
@@ -30,6 +30,9 @@ redirects.o : ~/Desktop/Kryshell/src/shell.h ~/Desktop/Kryshell/src/redirects.c
 
 tworand.o : ~/Desktop/Kryshell/src/shell.h ~/Desktop/Kryshell/src/tworand.c
 	$(CC) $(FLAGS) ~/Desktop/Kryshell/src/tworand.c
+
+rsi.o : ~/Desktop/Kryshell/src/shell.h ~/Desktop/Kryshell/src/rsi.c
+	$(CC) $(FLAGS) ~/Desktop/Kryshell/src/rsi.c
 	
 soshell     : $(OBS)
 	$(CC)  -o ~/Desktop/Kryshell/kryshell  $(OBS) $(src)
