@@ -36,3 +36,30 @@ void tworand(){
 	}
 
 }
+
+void calc(char *value1, char *op, char *value2){
+
+	float val1 = atof(value1), val2 = atof(value2);
+
+	const char mult = '*';
+	const char div = '/';
+	const char plus = '+';
+	const char minus = '-';
+	const char expon = '^';
+
+	if( mult == *op ){
+		printf("%f\n", (val1*val2));
+	}else if( div == *op ){
+		if(val2 == 0){
+			printf("Division error: division by 0.\n");
+		}else printf("%f\n", (val1/val2));
+	}else if( plus == *op ){
+		printf("%f\n", (val1+val2));
+	}else if( minus == *op ){
+		printf("%f\n", (val1-val2));
+	}else if( expon == *op ){
+		printf("%f\n", powf(val1, val2));
+	}
+
+}
+

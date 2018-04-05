@@ -12,6 +12,7 @@
 #include <ctype.h>
 #include <errno.h>
 #include <dirent.h>
+#include <math.h>
 
 void printhelp();
 
@@ -42,6 +43,9 @@ int get_num_fds();
 void soread (int n, int fdin, int fdout);
 
 void tworand ();
+
+void calc(char *value1, char *op, char *value2);
+
 
 void rsi(char *filename, int periods, double top, double bottom );
 

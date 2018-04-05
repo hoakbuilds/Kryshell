@@ -2,13 +2,13 @@
 CC=cc
 FLAGS=-c -Wall
 LIBS=-lm
-OBS=main.o execute.o parse.o socp.o files.o help.o redirects.o tworand.o rsi.o
+OBS=main.o execute.o parse.o socp.o files.o help.o redirects.o calcs.o rsi.o
  
  
-all :  soshell
+all :  kryshell
  
 main.o 		: ~/Desktop/Kryshell/src/shell.h ~/Desktop/Kryshell/src/main.c
-	$(CC) $(FLAGS) ~/Desktop/Kryshell/src/main.c
+	$(CC) $(FLAGS)  ~/Desktop/Kryshell/src/main.c
 	
 execute.o   : ~/Desktop/Kryshell/src/shell.h ~/Desktop/Kryshell/src/execute.c
 	$(CC) $(FLAGS) ~/Desktop/Kryshell/src/execute.c
@@ -28,14 +28,14 @@ help.o    	: ~/Desktop/Kryshell/src/shell.h ~/Desktop/Kryshell/src/help.c
 redirects.o : ~/Desktop/Kryshell/src/shell.h ~/Desktop/Kryshell/src/redirects.c
 	$(CC) $(FLAGS) ~/Desktop/Kryshell/src/redirects.c
 
-tworand.o : ~/Desktop/Kryshell/src/shell.h ~/Desktop/Kryshell/src/tworand.c
-	$(CC) $(FLAGS) ~/Desktop/Kryshell/src/tworand.c
+calcs.o : ~/Desktop/Kryshell/src/shell.h ~/Desktop/Kryshell/src/calcs.c
+	$(CC) $(FLAGS) ~/Desktop/Kryshell/src/calcs.c
 
 rsi.o : ~/Desktop/Kryshell/src/shell.h ~/Desktop/Kryshell/src/rsi.c
 	$(CC) $(FLAGS) ~/Desktop/Kryshell/src/rsi.c
 	
-soshell     : $(OBS)
-	$(CC)  -o ~/Desktop/Kryshell/kryshell  $(OBS) $(src)
+kryshell     : $(OBS)
+	$(CC)  -o ~/Desktop/Kryshell/kryshell  $(OBS) $(LIBS)
 	
 clean limpar:
 	rm -f kryshell *.o
