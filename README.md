@@ -78,11 +78,11 @@ bits 3 & 2\
 OP = { "*", "/", "+", "-", "^" }
 
 Example:\
-bits 1 & 2\
-0
-
-bits 3 & 2\
+calc 1 * 2\
 2
+
+calc 3 ^ 2\
+8
 	
 ## rsi [CSV]
 [on going work to calculate stock market / crypto asset rsi based on csv sheets]
