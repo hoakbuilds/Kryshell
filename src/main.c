@@ -135,7 +135,14 @@ int builtin (char **args, int numargs)
 		return 1;
 	}
 
-
+	if (strcmp (args[0], "bits") == 0 ){
+		if( numargs != 4 ){
+			printf("Syntax error: calc [VALUE1] [OP] [VALUE2]\n");
+			return 1;
+		}
+		bits(args[1], args[2], args[3]);
+		return 1;
+	}
 
 	if (strcmp (args[0], "rsi") == 0){
 

@@ -63,3 +63,20 @@ void calc(char *value1, char *op, char *value2){
 
 }
 
+void bits(char *value1, char *op, char *value2){
+
+	int val1 = atoi(value1), val2 = atoi(value2);
+	const char and = '&';
+	const char inclOR = '|';
+	const char exclOR = '^';
+	//const char not = '~';
+
+	if( and == *op ){
+		printf("%d\n", val1&val2);
+	}else if( inclOR == *op ){
+		printf("%d\n", val1|val2);
+	}else if( exclOR == *op ){
+		printf("%d\n", val1^val2);
+	}
+
+}

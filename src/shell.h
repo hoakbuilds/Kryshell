@@ -46,6 +46,7 @@ void tworand ();
 
 void calc(char *value1, char *op, char *value2);
 
+void bits(char *value1, char *op, char *value2);
 
 void rsi(char *filename, int periods, double top, double bottom );
 
