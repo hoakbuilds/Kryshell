@@ -6,6 +6,7 @@ int main ()
 {
 	int len;
 	int numargs=0;
+	LinkedList *history = NULL;
 	char buf[1024];		/* um comando */
 	char *args[64];		/* com um maximo de 64 argumentos */
 
@@ -26,12 +27,12 @@ int main ()
 	
 		numargs = parse(buf, args);	/* particiona a string em argumentos e retorna o numero de argumentos */
 
-        if( !builtin (args, numargs) ) execute (args, numargs);		/* executa o comando */
+        if( !builtin (args, numargs, history) ) execute (args, numargs);		/* executa o comando */
     }
 	return 0;
 }
 
-int builtin (char **args, int numargs)
+int builtin (char **args, int numargs, LinkedList *history)
 {
 	if (strcmp(args[0], "help") == 0 ){
 		printhelp();
@@ -135,6 +136,15 @@ int builtin (char **args, int numargs)
 		return 1;
 	}
 
+	if (strcmp (args[0], "isjpeg") == 0 ){
+		
+		if( isjpeg(open(args[1], O_RDONLY)) != 1 ){
+			printf("Not jpeg.\n");
+		}else printf("Is jpeg.\n");
+		
+		return 1;
+	}
+
 	if (strcmp (args[0], "bits") == 0 ){
 		if( numargs != 4 ){
 			printf("Syntax error: calc [VALUE1] [OP] [VALUE2]\n");
@@ -143,6 +153,13 @@ int builtin (char **args, int numargs)
 		bits(args[1], args[2], args[3]);
 		return 1;
 	}
+
+
+	if (strcmp (args[0], "history") == 0){
+
+
+	}
+
 
 	if (strcmp (args[0], "rsi") == 0){
 

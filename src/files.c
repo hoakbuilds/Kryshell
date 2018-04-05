@@ -175,3 +175,18 @@ int get_num_fds()
      closedir(dir);
      return fd_count;
 }
+
+int isjpeg( int fd ){
+
+	unsigned char b[4];
+	read(fd, b, 4);
+	lseek(fd, 0, SEEK_SET);
+
+	if ( b[0] == 0xff && b[1] == 0xd8 && b[2] == 0xff && b[3] == 0xe0){
+		return 1;
+	}
+	
+	close(fd);
+
+	return 0;
+}

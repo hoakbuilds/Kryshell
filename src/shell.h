@@ -14,40 +14,41 @@
 #include <dirent.h>
 #include <math.h>
 
+typedef struct LL{
+	char *string;
+	struct LL *next;
+}LinkedList;
+
+LinkedList *insertLast(LinkedList *head, char *string);
+LinkedList *createNode(char *string);
+
+/* SHELL OPERATION */
 void printhelp();
-
 int parse (char *buf, char **args);
-
 void redirects(int numargs, char *args[]);
-
 void execute (char **args, int numargs);
-
-int builtin (char **args, int numargs);
-
+int builtin (char **args, int numargs, LinkedList *head);
 int ultimo (int numargs, char **args);
 
+/* TEXT COPY */
 void socp (char *src, char *dest);
-
 int socpaux (int src, int dest);
-
-int validfd (int fd);
-
-void openfile (char *filename, int mode);
-
-void closefd (int fd);
-
-void fileinfo ();
-
-int get_num_fds();
-
 void soread (int n, int fdin, int fdout);
 
+/* FILE DESCRIPTORS */
+int validfd (int fd);
+void openfile (char *filename, int mode);
+void closefd (int fd);
+void fileinfo ();
+int isjpeg( int fd );
+int get_num_fds();
+
+/* MATHEMATICAL OPERATIONS */
 void tworand ();
-
 void calc(char *value1, char *op, char *value2);
-
 void bits(char *value1, char *op, char *value2);
 
+/* STOCK MARKETS (ETC) TECHNICAL INDICATORS */
 void rsi(char *filename, int periods, double top, double bottom );
 
 
