@@ -6,9 +6,12 @@ int main ()
 {
 	int len;
 	int numargs=0;
+	LinkedList *head = malloc(sizeof(LinkedList));
 	LinkedList *history = NULL;
 	char buf[1024];		/* um comando */
 	char *args[64];		/* com um maximo de 64 argumentos */
+	head->next = NULL;
+	head->string = NULL;
 
 	strcpy (prompt, "Kryshell>");
 
@@ -19,14 +22,15 @@ int main ()
 		printf ("\n");
 		exit (0);
 	}
+
 	len=strlen(buf);
 	
 	if ( 1==len ) continue;  // string is only a barra n
 	
-	if ( buf[len-1] == '\n' ) buf[len-1] ='\0';
-	
-		numargs = parse(buf, args);	/* particiona a string em argumentos e retorna o numero de argumentos */
+	if ( buf[len-1] == '\n' ) buf[len-1] ='\0';	
 
+		numargs = parse(buf, args);	/* particiona a string em argumentos e retorna o numero de argumentos */
+		
         if( !builtin (args, numargs, history) ) execute (args, numargs);		/* executa o comando */
     }
 	return 0;
@@ -45,7 +49,7 @@ int builtin (char **args, int numargs, LinkedList *history)
 	}
 
 	if (strcmp(args[0], "42") == 0 ){
-		printf("42 is the answer to life, the universew and everything.\n");
+		printf("42 is the answer to life, the universe and everything.\n");
 		return 1;
 	}
 
@@ -156,8 +160,10 @@ int builtin (char **args, int numargs, LinkedList *history)
 
 
 	if (strcmp (args[0], "history") == 0){
+		
+		printhistory(history);
 
-
+		return 1;
 	}
 
 

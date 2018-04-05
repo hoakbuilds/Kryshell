@@ -15,12 +15,13 @@
 #include <math.h>
 
 typedef struct LL{
-	char *string;
+	char *string;	
 	struct LL *next;
 }LinkedList;
 
-LinkedList *insertLast(LinkedList *head, char *string);
-LinkedList *createNode(char *string);
+/* HISTORY LIST OPERATION */
+LinkedList *insertFirst(LinkedList *head, char *string);
+void printhistory(LinkedList *head);
 
 /* SHELL OPERATION */
 void printhelp();
