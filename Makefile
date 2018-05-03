@@ -1,7 +1,7 @@
 
 CC=cc
 FLAGS=-c -Wall
-LIBS=-lm
+LIBS=-lm -pthread -lpthread
 OBS=main.o execute.o parse.o socp.o files.o help.o redirects.o calcs.o rsi.o history.o cat.o aviso.o
  
  

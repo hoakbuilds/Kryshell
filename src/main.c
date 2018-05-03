@@ -31,12 +31,12 @@ int main ()
 
 		numargs = parse(buf, args);	/* particiona a string em argumentos e retorna o numero de argumentos */
 		
-        if( !builtin (args, numargs, history) ) execute (args, numargs);		/* executa o comando */
+        if( !builtin (args, numargs, history, prompt) ) execute (args, numargs);		/* executa o comando */
     }
 	return 0;
 }
 
-int builtin (char **args, int numargs, LinkedList *history)
+int builtin (char **args, int numargs, LinkedList *history, char *prompt)
 {
 	if (strcmp(args[0], "help") == 0 ){
 		printhelp();
@@ -183,7 +183,16 @@ int builtin (char **args, int numargs, LinkedList *history)
 	}
 
 	if (strcmp (args[0], "aviso") == 0){
-		aviso( args[1], atoi(args[2]) );
+		if( numargs == 3 ){
+			aviso( args[1], atoi(args[2]) );
+		}else if ( numargs == 4 && ( strncmp(args[1], "-t", 2) == 0 ) ){
+			pthread_t th;
+			Aviso_t *avs = (Aviso_t *)malloc(sizeof(Aviso_t));
+			strcpy(avs->msg, args[2]);
+			strcpy(avs->prompt, prompt);
+			avs->tempo=atoi(args[3]);
+			pthread_create(&th, NULL, avisowrapper, (void *)avs);
+		}
 		return 1;
 	}
 
