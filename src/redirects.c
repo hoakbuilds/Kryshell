@@ -6,7 +6,7 @@ void redirects(int numargs, char *args[]){
 	int fd;
 	
 	if(strcmp(args[numargs-2], "2>") == 0) {
-		fd=creat(args[numargs-1], S_IWUSR|S_IRUSR); if(fd<0) perror("error");
+		fd=creat(args[numargs-1], S_IWUSR | S_IRUSR); if(fd<0) perror("error");
 		close(STDERR_FILENO);
 		dup(fd);
 		close(fd);
@@ -16,7 +16,7 @@ void redirects(int numargs, char *args[]){
 	}
 	
 	if(strcmp(args[numargs-2], ">>") == 0) {
-		fd=open(args[numargs-1], O_RDWR); if(fd<0) perror("error");
+		fd=open(args[numargs-1], O_WRONLY | O_APPEND); if(fd<0) perror("error");
 		close(STDOUT_FILENO);
 		dup(fd);
 		close(fd);

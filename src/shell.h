@@ -14,6 +14,13 @@
 #include <dirent.h>
 #include <math.h>
 
+					/*CONSTANTS THAT MAY BE USEFUL*/
+
+#define BG 0		  				/* used for background process*/
+#define FG 1		  				/* used for foreground process*/
+#define LLFIOBUFF 256 				/* low level file input/output buffer size */
+#define FILE_MODE ( S_IRUSR | S_IWUSR ) /* File permissions when using creat */
+
 typedef struct LL{
 	char *string;	
 	struct LL *next;
@@ -35,6 +42,7 @@ int ultimo (int numargs, char **args);
 void socp (char *src, char *dest);
 int socpaux (int src, int dest);
 void soread (int n, int fdin, int fdout);
+void cat (char* input, char* output);
 
 /* FILE DESCRIPTORS */
 int validfd (int fd);
@@ -53,9 +61,6 @@ void bits(char *value1, char *op, char *value2);
 void rsi(char *filename, int periods, double top, double bottom );
 
 
+/* UTILITY FUNCTIONS */
 
-					/*CONSTANTS THAT MAY BE USEFUL*/
-
-#define BG 0		  				/* used for background process*/
-#define FG 1		  				/* used for foreground process*/
-#define LLFIOBUFF 256 				/* low level file input/output buffer size */
+void aviso(char *msg, int tempo);

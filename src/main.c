@@ -182,6 +182,17 @@ int builtin (char **args, int numargs, LinkedList *history)
 		return 1;
 	}
 
+	if (strcmp (args[0], "aviso") == 0){
+		aviso( args[1], atoi(args[2]) );
+		return 1;
+	}
+
+	if (strcmp (args[0], "cat") == 0){
+		if(numargs < 3) return 1;
+		cat( args[1], args[2] );
+		return 1;
+	}
+
 	//devolver 0 indica que n�o h� comando embutido
 
   return 0;

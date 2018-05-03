@@ -2,7 +2,7 @@
 CC=cc
 FLAGS=-c -Wall
 LIBS=-lm
-OBS=main.o execute.o parse.o socp.o files.o help.o redirects.o calcs.o rsi.o history.o
+OBS=main.o execute.o parse.o socp.o files.o help.o redirects.o calcs.o rsi.o history.o cat.o aviso.o
  
  
 all :  kryshell
@@ -36,6 +36,12 @@ rsi.o : ~/Desktop/Kryshell/src/shell.h ~/Desktop/Kryshell/src/rsi.c
 
 history.o : ~/Desktop/Kryshell/src/shell.h ~/Desktop/Kryshell/src/history.c
 	$(CC) $(FLAGS) ~/Desktop/Kryshell/src/history.c
+
+cat.o : ~/Desktop/Kryshell/src/shell.h ~/Desktop/Kryshell/src/cat.c
+	$(CC) $(FLAGS) ~/Desktop/Kryshell/src/cat.c
+
+aviso.o : ~/Desktop/Kryshell/src/shell.h ~/Desktop/Kryshell/src/aviso.c
+	$(CC) $(FLAGS) ~/Desktop/Kryshell/src/aviso.c
 	
 kryshell     : $(OBS)
 	$(CC)  -o ~/Desktop/Kryshell/kryshell  $(OBS) $(LIBS)
