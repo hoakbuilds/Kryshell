@@ -83,6 +83,10 @@ calc 1 * 2\
 
 calc 3 ^ 2\
 8
-	
+
+## aviso [OP] [MESSAGE] [TIMER]
+Waits for [timer in seconds] and then displays message from input.\
+If used with [-t] argument, will execute threaded warning and you can still use the shell, when timer ends, message is displayed.\
+	 
 ## rsi [CSV]
 [on going work to calculate stock market / crypto asset rsi based on csv sheets]
