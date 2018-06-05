@@ -5,7 +5,7 @@ void aviso (char *msg, int tempo){
     sleep (1);
         tempo--;
     }
-    fprintf (stderr, "\nAviso : %s\n\n", msg );
+    fprintf (stderr, "\n%sAviso:%s %s\n\n",KRYELLOW, KRYESET, msg );
 }
 
 void avisot (char *msg, int tempo, char *prompt){
@@ -13,7 +13,8 @@ void avisot (char *msg, int tempo, char *prompt){
     sleep (1);
         tempo--;
     }
-    fprintf (stderr, "\n\nAviso : %s\n\n%s", msg, prompt );
+    fprintf (stderr, "\n\n%sAviso:%s %s\n\n%s%s %s",KRYELLOW,KRYESET, msg,KRYED,prompt,KRYESET);
+    
 }
 
 void * avisowrapper(void *args) {

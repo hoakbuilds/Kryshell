@@ -89,14 +89,14 @@ void fileinfo(){
 		if( validfd(i) ){
 			fstat(i, &fd);
 			printf("%d - ", i);
-			switch (fd.st_mode & S_IFMT) {
-				case S_IFBLK:  printf("block device  -");            break;
-				case S_IFCHR:  printf("character device  -");        break;
-				case S_IFDIR:  printf("directory  -");               break;
-				case S_IFIFO:  printf("FIFO/pipe  -");               break;
-				case S_IFLNK:  printf("symlink  -");                 break;
-				case S_IFREG:  printf("regular file  -");            break;
-				case S_IFSOCK: printf("socket  -");                  break;
+			switch (fd.st_mode & __S_IFMT) {
+				case __S_IFBLK:  printf("block device  -");            break;
+				case __S_IFCHR:  printf("character device  -");        break;
+				case __S_IFDIR:  printf("directory  -");               break;
+				case __S_IFIFO:  printf("FIFO/pipe  -");               break;
+				case __S_IFLNK:  printf("symlink  -");                 break;
+				case __S_IFREG:  printf("regular file  -");            break;
+				case __S_IFSOCK: printf("socket  -");                  break;
 				default:       printf("unknown?  -");                break;
 			}
 			printf("  MODE:  %lo (octal)  -  ", (unsigned long) fd.st_mode);
@@ -189,4 +189,75 @@ int isjpeg( int fd ){
 	close(fd);
 
 	return 0;
+}
+
+
+void sols(char* pathname){
+
+	int count, i;
+	struct dirent **files;
+	struct stat file;
+	char cwd[1024];
+
+	if(pathname == NULL){
+		if (getcwd(cwd, 1024)==NULL){
+			printf(" Error getting path\n");
+			exit(0);
+		}
+			
+	printf("Current working directory = %s\n", cwd);
+	count=scandir(cwd,&files, NULL,alphasort);
+	/* If no files found, make a non-selectable menu item */
+	if (count <= 0){
+		printf("No files in this directory\n");
+		exit(0);
+	}
+	printf("Number of files = %d\n",count);
+	for (i=1;i<count+1;++i){
+
+		if ( (strcmp(files[i-1]->d_name, ".") == 0) || (strcmp(files[i-1]->d_name, "..")==0) ){
+			continue;
+		} 
+		if ( stat(files[i-1]->d_name, &file) == -1 ){
+			printf("%s : could not stat\n",files[i-1]->d_name);
+			continue;
+		}
+		if( S_ISDIR( file.st_mode ) ){
+			printf(FOLDER"%s %s\n", files[i-1]->d_name,KRYESET );
+			continue;
+		}
+		printf("%s",files[i-1]->d_name);
+		putchar('\n');
+	}
+	return;
+	}
+
+	printf("Current working directory = %s\n", pathname);
+	count=scandir(pathname,&files, NULL,alphasort);
+	/* If no files found, make a non-selectable menu item */
+	if (count <= 0){
+		printf("No files in this directory\n");
+		exit(0);
+	}
+	printf("Number of files = %d\n",count);
+	for (i=1;i<count+1;++i){
+
+		if ( (strcmp(files[i-1]->d_name, ".") == 0) || (strcmp(files[i-1]->d_name, "..")==0) ){
+			continue;
+		} 
+
+		if( S_ISDIR( file.st_mode ) ){
+			printf(KRYREEN" %s %s", files[i-1]->d_name,KRYESET);
+			continue;
+		}
+		printf("%s",files[i-1]->d_name);
+		putchar('\n');
+	}
+
+}
+
+int file_select(struct dirent *entry){
+	if ( (strcmp(entry->d_name, ".") == 0) || (strcmp(entry->d_name, "..")==0)) return(0);
+	
+	return(1);
 }

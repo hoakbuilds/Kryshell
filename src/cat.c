@@ -9,15 +9,15 @@ void cat (char* input, char* output){
     args[0] = nome;
     args[1] = NULL;
 
-    fd = open(input, O_RDONLY);
-    if( fd < 0 ){ fprintf(stderr, "open error"); return; }
+    fd = open(input, O_RDONLY|O_CREAT);
+    if( fd < 0 ){ fprintf(stderr, "open error\n"); return; }
 
     dup2(fd, fileno(stdin));
     close( fd );
 
     fd = creat(output, FILE_MODE);
 
-    if( fd < 0 ){ fprintf(stderr, "creat error"); return; }
+    if( fd < 0 ){ fprintf(stderr, "creat error\n"); return; }
 
     dup2(fd, fileno(stdout));
     close(fd);
